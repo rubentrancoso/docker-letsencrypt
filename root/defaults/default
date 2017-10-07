@@ -11,7 +11,7 @@ server {
 	listen 443 ssl default_server;
 
 	root /config/www;
-	index index.html index.htm index.php;
+	index index.html index.htm;
 
 	server_name _;
 
@@ -24,17 +24,7 @@ server {
 	client_max_body_size 0;
 
 	location / {
-		try_files $uri $uri/ /index.html /index.php?$args =404;
-	}
-
-	location ~ \.php$ {
-		fastcgi_split_path_info ^(.+\.php)(/.+)$;
-		# With php7-cgi alone:
-		fastcgi_pass 127.0.0.1:9000;
-		# With php7-fpm:
-		#fastcgi_pass unix:/var/run/php7-fpm.sock;
-		fastcgi_index index.php;
-		include /etc/nginx/fastcgi_params;
+		try_files $uri $uri/ /index.html =404;
 	}
 
 # sample reverse proxy config for password protected couchpotato running at IP 192.168.1.50 port 5050 with base url "cp"
