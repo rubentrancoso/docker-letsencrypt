@@ -47,7 +47,8 @@ RUN \
  mv /etc/fail2ban/filter.d /defaults/fail2ban/ && \ 
  
 # remove php7
- apk del php7*
+ apk del php7* && \
+ rm -rf /etc/services.d/php-fpm
 
 # add local files
 COPY root/ /
