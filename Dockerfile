@@ -46,8 +46,8 @@ RUN \
  mv /etc/fail2ban/action.d /defaults/fail2ban/ && \
  mv /etc/fail2ban/filter.d /defaults/fail2ban/ && \ 
  
-# make php7 down by default
- rm -rf /etc/php7
+# remove php7
+ apk del php7*
 
 # add local files
 COPY root/ /
