@@ -45,6 +45,9 @@ RUN \
  mkdir -p /defaults/fail2ban && \
  mv /etc/fail2ban/action.d /defaults/fail2ban/ && \
  mv /etc/fail2ban/filter.d /defaults/fail2ban/
+ 
+ # make php7 down by default
+ touch /etc/php7/down
 
 # add local files
 COPY root/ /
