@@ -132,6 +132,10 @@ if [ ! -f "/config/keys/letsencrypt/fullchain.pem" ]; then
   certbot certonly $STAGINGPARAM --renew-with-new-domains --allow-subset-of-names --non-interactive --renew-by-default --standalone --preferred-challenges tls-sni --rsa-key-size 4096 $EMAILPARAM --agree-tos $URLS
   cd /config/keys/letsencrypt || exit
   openssl pkcs12 -export -out privkey.pfx -inkey privkey.pem -in cert.pem -certfile chain.pem -passout pass:
+  cp privkey.pem domain.key
+  cat cert.pem chain.pem > domain.crt
+  chmod 777 domain.crt
+  chmod 777 domain.key 
 else
   chmod +x /app/le-renew.sh
   sleep 1
